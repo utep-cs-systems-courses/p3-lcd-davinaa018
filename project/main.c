@@ -10,7 +10,7 @@ void main()
     lcd_init();
     clearScreen(COLOR_BLACK);
     init_shapes();
-    draw_moving_shapes();
+    draw_shapes();
 
     or_sr(0x18);
 }
