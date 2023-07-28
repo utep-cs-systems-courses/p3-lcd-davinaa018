@@ -23,8 +23,19 @@ typedef struct
     int r;
 } Circle;
 
+typedef enum {
+    UP,
+    DOWN
+} Direction;
+
+extern Rectangle rectangle1;
+extern Rectangle rectangle2;
+extern Circle circle1;
+
 void init_shapes();
 
 void draw_shapes();
+
+void move_rectangles(Rectangle* rect, Direction direction);
 
 #endif
