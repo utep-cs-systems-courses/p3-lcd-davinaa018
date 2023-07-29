@@ -39,4 +39,8 @@ void draw_shapes();
 void move_rectangles(Rectangle* rect, Direction direction);
 
 void draw_circle(int x, int y, int r, u_int color);
+
+void move_circle();
+
+
 #endif

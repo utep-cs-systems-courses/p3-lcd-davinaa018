@@ -12,7 +12,13 @@ void main()
     clearScreen(COLOR_BLACK);
     init_shapes();
     draw_shapes();
-    switch_init();
+    
+    while(1)
+    {
+        switch_init();
+        move_circle();
+        __delay_cycles(250000);
+    }
 
     or_sr(0x18);
 }

@@ -92,3 +92,52 @@ draw_circle(int x, int y, int r, u_int color)
         }
     }
 }
+
+
+void
+move_circle(void)
+{
+  static int x_vel = 2;
+  static int y_vel = 5;
+
+  draw_circle(circle1.x, circle1.y, circle1.r, COLOR_BLACK);
+
+  // save current position
+  circle1.old_x = circle1.x;
+  circle1.old_y = circle1.y;
+
+  // update position
+  circle1.x += x_vel;
+  circle1.y += y_vel;
+  
+  // check boundaries, see if rectangle has hit the edges
+  if ( (circle1.x + circle1.r) >= screenWidth || (circle1.x - circle1.r) <= 0) {
+    // top or bottom hit, reverse x velocity
+    x_vel = x_vel * -1;
+  }
+
+  // Check for collision with rectangle1
+    if (circle1.x + circle1.r >= rectangle1.col - rectangle1.width / 2 &&
+        circle1.x - circle1.r <= rectangle1.col + rectangle1.width / 2 &&
+        circle1.y + circle1.r >= rectangle1.row - rectangle1.height / 2 &&
+        circle1.y - circle1.r <= rectangle1.row + rectangle1.height / 2)
+    {
+        x_vel = x_vel * -1;
+    }
+
+    // Check for collision with rectangle2
+    if (circle1.x + circle1.r >= rectangle2.col - rectangle2.width / 2 &&
+        circle1.x - circle1.r <= rectangle2.col + rectangle2.width / 2 &&
+        circle1.y + circle1.r >= rectangle2.row - rectangle2.height / 2 &&
+        circle1.y - circle1.r <= rectangle2.row + rectangle2.height / 2)
+    {
+        x_vel = x_vel * -1;
+    
+  }
+  if ( ( circle1.y - circle1.r ) <= 0 ||            // left boundary
+       ( circle1.y + circle1.r ) >= screenHeight ) { // right boundary
+    // right or left hit, reverse y velocity
+    y_vel = y_vel * -1;
+  }
+  draw_circle(circle1.x, circle1.y, circle1.r, COLOR_RED);
+}
