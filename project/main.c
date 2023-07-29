@@ -14,6 +14,5 @@ void main()
     draw_shapes();
     switch_init();
 
-
     or_sr(0x18);
 }
