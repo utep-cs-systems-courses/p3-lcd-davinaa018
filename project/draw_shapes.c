@@ -4,6 +4,9 @@
 #include "draw_shapes.h"
 
 
+int left_score = 0;
+int right_score = 0;
+
 Rectangle rectangle1;
 Rectangle rectangle2;
 Circle circle1;
@@ -11,6 +14,8 @@ Circle circle1;
 void 
 init_shapes()
 {
+    update_text();
+    
     // Rectangle 1
     rectangle1.row = screenHeight/2;
     rectangle1.col = screenWidth / 1.1;
@@ -139,5 +144,45 @@ move_circle(void)
     // right or left hit, reverse y velocity
     y_vel = y_vel * -1;
   }
+
+   // check if circle has hit left or right boundaries
+  if((circle1.x + circle1.r) >= screenWidth) { 
+    reset_circle();
+    left_score++;
+
+  }
+  if((circle1.x - circle1.r) <= 0){/
+    reset_circle();
+    right_score++;
+
+  }
+
   draw_circle(circle1.x, circle1.y, circle1.r, COLOR_RED);
+}
+
+void 
+reset_circle()
+{
+
+    circle1.y = screenHeight/4;
+    circle1.x = screenWidth / 2;
+    circle1.old_y = screenHeight/4;
+    circle1.old_x = screenWidth / 2;
+    circle1.r = 5;
+    draw_circle(circle1.x, circle1.y, circle1.r, COLOR_RED);
+}
+
+void
+update_text()
+{
+  const u_char text_row = 20;
+  const u_char text_col = 40;
+  const u_char char_width = 12;
+  static u_char blue = 31, green = 16, red = 31;
+  u_int on_color  =                (green << 5) | red;
+  u_int off_color = (blue << 11)                | red;
+
+  drawChar5x7(text_col, text_row, left_score+'0',on_color, COLOR_BLACK);
+  drawChar5x7(text_col + char_width, text_row, right_score+'0',on_color, COLOR_BLACK);
+  
 }

@@ -33,14 +33,10 @@ extern Rectangle rectangle2;
 extern Circle circle1;
 
 void init_shapes();
-
 void draw_shapes();
-
 void move_rectangles(Rectangle* rect, Direction direction);
-
 void draw_circle(int x, int y, int r, u_int color);
-
 void move_circle();
-
-
+void reset_circle();
+void update_text();
 #endif

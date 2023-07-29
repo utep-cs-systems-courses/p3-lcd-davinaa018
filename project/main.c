@@ -17,6 +17,7 @@ void main()
     {
         switch_init();
         move_circle();
+        update_text();
         __delay_cycles(250000);
     }
 
